@@ -8,7 +8,7 @@ import Footer from '@/components/footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Flipkart Clone - Online Shopping Site',
+  title: 'Fake Store - Online Shopping Site',
   description: 'Shop Online for Electronics, Fashion, Home & More',
 };
 
