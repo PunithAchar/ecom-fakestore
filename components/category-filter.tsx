@@ -15,7 +15,7 @@ export default function CategoryFilter() {
 
   return (
     <>
-      <Card className="hidden md:block">
+      <Card className="hidden lg:block">
         <CardHeader >
           <CardTitle>Categories</CardTitle>
         </CardHeader>
@@ -41,7 +41,7 @@ export default function CategoryFilter() {
           </div>
         </CardContent>
       </Card>
-      <Box sx={{ mb: 3 }} className="md:hidden">
+      <Box sx={{ mb: 3 }} className="lg:hidden">
         <Typography variant="h6" sx={{ mb: 2 }}>
           Categories
         </Typography>
