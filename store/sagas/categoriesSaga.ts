@@ -8,7 +8,7 @@ import {
 
 function* fetchCategories() {
   try {
-    const response = yield call(
+    const response:{data:string[]} = yield call(
       axios.get,
       'https://fakestoreapi.com/products/categories'
     );
