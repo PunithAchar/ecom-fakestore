@@ -50,9 +50,9 @@ export default function CartPage() {
               {items.map((item) => (
                 <div
                   key={item.id}
-                  className="flex items-center  space-x-4 py-4 border-b "
+                  className="flex items-center justify-between  space-x-4 py-4 border-b "
                 >
-                  <div className="flex gap-4 flex-col md:flex-row">
+                  <div className="flex flex-col md:flex-row">
                     <img
                       src={item.image}
                       alt={item.title}

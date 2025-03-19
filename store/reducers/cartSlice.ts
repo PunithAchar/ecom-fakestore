@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CartItem, Product } from '@/lib/types';
+import { toast } from 'react-toastify';
 
 interface CartState {
   items: CartItem[];
@@ -20,8 +21,10 @@ const cartSlice = createSlice({
       if (existingItem) {
         // existingItem.quantity += 1;
         // alert("already exist");
+        toast.warning("Product Already Exist");
       } else {
         state.items.push({ ...action.payload, quantity: 1 });
+        toast.success("Product Added to cart");
       }
       state.total = state.items.reduce((total, item) => total + (item.price * item.quantity), 0);
     },
