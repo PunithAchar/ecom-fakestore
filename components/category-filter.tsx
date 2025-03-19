@@ -1,15 +1,11 @@
-'use client';
+"use client";
 
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
-import { setSelectedCategory } from '@/store/reducers/categoriesSlice';
-import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+import { setSelectedCategory } from "@/store/reducers/categoriesSlice";
+import { Button } from "@/components/ui/button";
+import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, Box, Chip, Typography } from "@mui/material";
 
 export default function CategoryFilter() {
   const dispatch = useDispatch();
@@ -18,31 +14,56 @@ export default function CategoryFilter() {
   );
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Categories</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-2">
-          <Button
-            variant={selectedCategory === null ? 'default' : 'outline'}
-            className="w-full justify-start"
-            onClick={() => dispatch(setSelectedCategory(null))}
-          >
-            All Categories
-          </Button>
-          {categories.map((category) => (
+    <>
+      <Card className="hidden md:block">
+        <CardHeader >
+          <CardTitle>Categories</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-2">
             <Button
-              key={category}
-              variant={selectedCategory === category ? 'default' : 'outline'}
+              variant={selectedCategory === null ? "default" : "outline"}
               className="w-full justify-start"
-              onClick={() => dispatch(setSelectedCategory(category))}
+              onClick={() => dispatch(setSelectedCategory(null))}
             >
-              {category.charAt(0).toUpperCase() + category.slice(1)}
+              All Categories
             </Button>
+            {categories.map((category) => (
+              <Button
+                key={category}
+                variant={selectedCategory === category ? "default" : "outline"}
+                className="w-full justify-start"
+                onClick={() => dispatch(setSelectedCategory(category))}
+              >
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </Button>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+      <Box sx={{ mb: 3 }} className="md:hidden">
+        <Typography variant="h6" sx={{ mb: 2 }}>
+          Categories
+        </Typography>
+        <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
+          {categories.map((category) => (
+            <Chip
+              key={category}
+              label={category}
+              onClick={() => dispatch(setSelectedCategory(category))}
+              color={selectedCategory === category ? "warning" : "default"}
+              variant={selectedCategory === category ? "filled" : "outlined"}
+            />
           ))}
-        </div>
-      </CardContent>
-    </Card>
+          {selectedCategory && (
+            <Chip
+              label="Clear Filters"
+              onClick={() => dispatch(setSelectedCategory(null))}
+              color="secondary"
+            />
+          )}
+        </Box>
+      </Box>
+    </>
   );
 }
