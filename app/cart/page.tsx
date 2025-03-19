@@ -1,29 +1,32 @@
-'use client';
+"use client";
 
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 import {
   removeFromCart,
   updateQuantity,
   clearCart,
-} from '@/store/reducers/cartSlice';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Minus, Plus, Trash2 } from 'lucide-react';
+} from "@/store/reducers/cartSlice";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Minus, Plus, Trash2 } from "lucide-react";
+import Link from "next/link";
 
 export default function CartPage() {
   const dispatch = useDispatch();
   const { items, total } = useSelector((state: RootState) => state.cart);
-
   if (items.length === 0) {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="text-center">
           <h2 className="text-2xl font-bold mb-4">Your cart is empty</h2>
           <p className="text-gray-600 mb-8">Add items to your cart to shop</p>
-          <Button href="/" className="inline-flex items-center">
+          <Link
+            href="/"
+            className="inline-flex items-center text-white bg-black rounded-md px-4 py-2 cursor-pointer"
+          >
             Continue Shopping
-          </Button>
+          </Link>
         </div>
       </div>
     );
@@ -47,16 +50,18 @@ export default function CartPage() {
               {items.map((item) => (
                 <div
                   key={item.id}
-                  className="flex items-center space-x-4 py-4 border-b"
+                  className="flex items-center  space-x-4 py-4 border-b "
                 >
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-24 h-24 object-contain"
-                  />
-                  <div className="flex-grow">
-                    <h3 className="font-medium">{item.title}</h3>
-                    <p className="text-lg font-bold mt-2">₹{item.price}</p>
+                  <div className="flex gap-4 flex-col md:flex-row">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-24 h-24 object-contain"
+                    />
+                    <div className="flex-grow">
+                      <h3 className="font-medium">{item.title}</h3>
+                      <p className="text-lg font-bold mt-2">₹{item.price}</p>
+                    </div>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Button
