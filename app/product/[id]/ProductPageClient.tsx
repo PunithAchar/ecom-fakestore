@@ -1,25 +1,26 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '@/store/reducers/cartSlice';
 import { Product } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Star } from 'lucide-react';
+import { RootState } from '@/store/store';
+import { fetchProductByIdStart } from '@/store/reducers/productByIdSlice';
 
 export default function ProductPageClient({ id }: { id: string }) {
   const dispatch = useDispatch();
-  const [product, setProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(true);
+  const {
+    item: product,
+    loading,
+  } = useSelector((state: RootState) => state.productById);
 
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setProduct(data);
-        setLoading(false);
-      });
-  }, [id]);
+    if (id) {
+      dispatch(fetchProductByIdStart(Number(id))); // Convert id to number
+    }
+  }, [dispatch,id]);
 
   if (loading) {
     return (

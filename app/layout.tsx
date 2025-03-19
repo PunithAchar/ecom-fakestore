@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import { Providers } from '@/store/providers';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
+import { Bounce, ToastContainer } from "react-toastify";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,6 +27,19 @@ export default function RootLayout({
             <main className="flex-grow">{children}</main>
             <Footer />
           </div>
+          <ToastContainer
+            position="top-right"
+            autoClose={1000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition={Bounce}
+          />
         </Providers>
       </body>
     </html>
