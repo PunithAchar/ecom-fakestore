@@ -6,12 +6,12 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { Search, ShoppingCart, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+// import {
+//   DropdownMenu,
+//   DropdownMenuContent,
+//   DropdownMenuItem,
+//   DropdownMenuTrigger,
+// } from '@/components/ui/dropdown-menu';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
