@@ -51,7 +51,7 @@ export default function ProductPageClient({ id }: { id: string }) {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-2">
       <div className="flex flex-col md:flex-row gap-8 lg:justify-evenly lg:items-center">
         <div className="w-full md:w-1/2">
           <div className="bg-white p-8 rounded-lg ">

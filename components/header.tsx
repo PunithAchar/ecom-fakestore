@@ -6,17 +6,17 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { Search, ShoppingCart, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+// import {
+//   DropdownMenu,
+//   DropdownMenuContent,
+//   DropdownMenuItem,
+//   DropdownMenuTrigger,
+// } from '@/components/ui/dropdown-menu';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const cart = useSelector((state: RootState) => state.cart);
-  const cartItemCount = cart.items.reduce((total, item) => total + item.quantity, 0);
+  // const cartItemCount = cart.items.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <header className="bg-[#2874f0] text-white sticky top-0 z-50">
@@ -42,9 +42,9 @@ export default function Header() {
           <div className="flex items-center space-x-4">
             <Link href="/cart" className="flex items-center space-x-1">
               <ShoppingCart className="h-6 w-6" />
-              {cartItemCount > 0 && (
+              {cart?.items?.length > 0 && (
                 <span className="bg-yellow-400 text-black rounded-full px-2 py-1 text-xs">
-                  {cartItemCount}
+                  {cart?.items?.length}
                 </span>
               )}
             </Link>
@@ -59,7 +59,7 @@ export default function Header() {
               </Button>
             </div>
 
-            <div className="hidden md:flex items-center space-x-4">
+            {/* <div className="hidden md:flex items-center space-x-4">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost">Login</Button>
@@ -71,7 +71,7 @@ export default function Header() {
                   <DropdownMenuItem>Wishlist</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

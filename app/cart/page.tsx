@@ -15,6 +15,8 @@ import Link from "next/link";
 export default function CartPage() {
   const dispatch = useDispatch();
   const { items, total } = useSelector((state: RootState) => state.cart);
+  // const cartItemCount = items.reduce((total, item) => total + item.quantity, 0);
+
   if (items.length === 0) {
     return (
       <div className="container mx-auto px-4 py-8">
@@ -60,7 +62,8 @@ export default function CartPage() {
                     />
                     <div className="flex-grow">
                       <h3 className="font-medium">{item.title}</h3>
-                      <p className="text-lg font-bold mt-2">₹{item.price}</p>
+                      <p className="text-lg font-bold mt-2">₹{item.price}/-</p>
+                      <p className="text-sm font-normal mt-2">₹{item.price} * {item.quantity} = ₹{(item.price)*(item.quantity)}</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
